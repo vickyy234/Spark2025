@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submission</title>
+</head>
+<body>
+    <h2>Submit Your Details</h2>
+    <form id="contactForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" required><br><br>
+
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        const scriptURL = "https://script.google.com/macros/s/AKfycbyMgi5_9hc4OuVKwpyeskdbNI0bFFIb3gs0m_kWq640C9-nFrvZmLl1mKbKvg9iIEs2fA/exec";
+
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let formData = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                phone: document.getElementById("phone").value
+            };
+
+            fetch(scriptURL, {
+                method: "POST",
+                body: JSON.stringify(formData),
+                headers: { "Content-Type": "application/json" }
+            })
+            .then(response => alert("Form submitted successfully!"))
+            .catch(error => console.error("Error!", error));
+        });
+    </script>
+</body>
+</html>
