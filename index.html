@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="container">
+    <form method="post" action="https://script.google.com/macros/s/AKfycbyreAskFwBeS6lfiRyAgMJicAwfSSrUAVLrYIono3LN0SaGY6qtBNTNPgCfPok_jfcpsg/exec" name="contact-form">
+      <h4>Contact Us</h4>
+      <input type="text" name="your-name" placeholder="Name">
+      <input type="text" name="your-number" placeholder="Number">
+      <input type="email" name="your-email" placeholder="Email">
+      <textarea name="message" rows="7" placeholder="Your Message">
+      </textarea>
+      <input type="submit" value="Submit" id="submit">
+		</form>
+	</div>
+</body>
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyreAskFwBeS6lfiRyAgMJicAwfSSrUAVLrYIono3LN0SaGY6qtBNTNPgCfPok_jfcpsg/exec'
+
+    const form = document.forms['contact-form']
+
+    form.addEventListener('submit', e => {
+  
+    e.preventDefault()
+  
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+    .then(response => alert("Thank you! Form is submitted" ))
+    .then(() => { window.location.reload(); })
+    .catch(error => console.error('Error!', error.message))
+})
+</script>
+</html>
